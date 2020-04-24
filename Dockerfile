@@ -1,13 +1,11 @@
 FROM alpine:3.10
 
+ENV TZ=Asia/Tokyo
+
 RUN apk update \
  && apk upgrade
 
-RUN set -x && apk add --no-cache --update zip ca-certificates git
-
-RUN apk --no-cache add tzdata && \
-    cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
-    apk del tzdata
+RUN set -x && apk add --no-cache --update zip ca-certificates git tzdata
 
 ENV USACLOUD_VERSION=0.32.2
 
